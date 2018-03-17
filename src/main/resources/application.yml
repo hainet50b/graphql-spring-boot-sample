@@ -6,12 +6,17 @@ spring:
 
 graphql:
   servlet:
+    # (Optional) default: true
     enabled: true
-    mapping: /graphql
+    # (Optional) default: true
     corsEnabled: true
+    # (Optional) default: /graphql
+    mapping: /graphql
 
 graphiql:
+  # (Optional) default: true
   enabled: true
-  mapping: /graphiql
+  # (Optional) default: /graphql
   endpoint: /graphql
-
+  # (Optional) default: /graphiql
+  mapping: /graphiql
