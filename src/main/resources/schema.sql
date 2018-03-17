@@ -1,5 +1,12 @@
-CREATE TABLE  person(
-  id INT AUTO_INCREMENT,
-  name VARCHAR,
+CREATE TABLE book (
+  id        INT AUTO_INCREMENT,
+  title     VARCHAR NOT NULL UNIQUE,
+  author_id INT     NOT NULL,
   PRIMARY KEY (id)
 );
+
+CREATE TABLE author (
+  id   INT AUTO_INCREMENT,
+  name VARCHAR NOT NULL UNIQUE,
+  PRIMARY KEY (id)
+)

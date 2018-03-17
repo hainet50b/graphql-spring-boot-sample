@@ -1,23 +1,36 @@
 package com.hainet.graphql.spring.boot.sample.domain.resolver;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
-import com.hainet.graphql.spring.boot.sample.domain.dao.PersonDao;
-import com.hainet.graphql.spring.boot.sample.domain.model.Person;
+import com.hainet.graphql.spring.boot.sample.domain.dao.AuthorDao;
+import com.hainet.graphql.spring.boot.sample.domain.dao.BookDao;
+import com.hainet.graphql.spring.boot.sample.domain.model.Author;
+import com.hainet.graphql.spring.boot.sample.domain.model.Book;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class Mutation implements GraphQLMutationResolver {
 
-    private final PersonDao dao;
+    private final BookDao bookDao;
+    private final AuthorDao authorDao;
 
-    public Mutation(final PersonDao dao) {
-        this.dao = dao;
+    public Book createBook(final String title, final int authorId) {
+        final Book book = new Book();
+        book.setTitle(title);
+        book.setAuthorId(authorId);
+
+        bookDao.insert(book);
+
+        return book;
     }
 
-    public Person createPerson(final String name) {
-        final Person person = new Person();
-        person.setName(name);
+    public Author createAuthor(final String name) {
+        final Author author = new Author();
+        author.setName(name);
 
-        return person;
+        authorDao.insert(author);
+
+        return author;
     }
 }
