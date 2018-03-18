@@ -4,7 +4,11 @@ query {
   findBooks {
     id,
     title,
-    author {
+    publisher{
+      id,
+      name
+    },
+    authors {
       id,
       name
     }
@@ -12,13 +16,35 @@ query {
 }
 
 mutation {
-  createBook(title: "Buch der Lieder", authorId: 2) {
+  createBook(title: "Buch der Lieder", publisherId: 2, authorId: 2) {
     id,
     title,
-    author {
+    publisher {
       id,
       name
     }
+    authors {
+      id,
+      name
+    }
+  }
+}
+
+mutation {
+  relateAuthorToBook(bookId: 2, authorId: 2)
+}
+
+query {
+  findPublishers {
+    id,
+    name
+  }
+}
+
+mutation {
+  createPublisher(name: "Iwanami") {
+    id,
+    name
   }
 }
 
