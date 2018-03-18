@@ -3,13 +3,9 @@ package com.hainet.graphql.spring.boot.sample.domain.model;
 import lombok.Data;
 
 @Data
-public class Book {
+public class Publisher {
 
     private int id;
 
-    private String title;
-
-    private int publisherId;
-
-    private int authorId;
+    private String name;
 }

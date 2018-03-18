@@ -20,9 +20,21 @@ public class BookDao {
     }
 
     public int insert(final Book book) {
-        final int result = jdbcTemplate.update("INSERT INTO book (title, author_id) VALUES (?, ?)", book.getTitle(), book.getAuthorId());
+        final int result = jdbcTemplate.update("INSERT INTO book (title, publisher_id, author_id) VALUES (?, ?, ?)",
+                book.getTitle(),
+                book.getPublisherId(),
+                book.getAuthorId()
+        );
         book.setId(this.findAll().stream().map(Book::getId).max(Comparator.naturalOrder()).orElse(0));
 
         return result;
+    }
+
+    public int relateAuthorToBook(final int bookId, final int authorId) {
+        return jdbcTemplate.update(
+                "INSERT INTO book_author (book_id, author_id) VALUES (?, ?)",
+                bookId,
+                authorId
+        );
     }
 }

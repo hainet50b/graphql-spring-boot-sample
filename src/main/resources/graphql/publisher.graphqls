@@ -1,0 +1,12 @@
+type Publisher {
+  id: ID!
+  name: String!
+}
+
+extend type Query {
+  findPublishers: [Publisher]!
+}
+
+extend type Mutation {
+  createPublisher(name: String!) : Publisher!
+}

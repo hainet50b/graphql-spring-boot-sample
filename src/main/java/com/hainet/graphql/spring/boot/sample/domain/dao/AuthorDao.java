@@ -23,6 +23,15 @@ public class AuthorDao {
         return this.jdbcTemplate.queryForObject("SELECT * FROM author WHERE id = ?", new BeanPropertyRowMapper<>(Author.class), id);
     }
 
+    public List<Author> findByBookId(final int bookId) {
+        return this.jdbcTemplate.query("SELECT * " +
+                        "FROM author, book_author " +
+                        "WHERE author.id = book_author.author_id " +
+                        "AND book_author.book_id = ?",
+                new BeanPropertyRowMapper<>(Author.class),
+                bookId);
+    }
+
     public int insert(final Author author) {
         final int result = this.jdbcTemplate.update("INSERT INTO author (name) VALUES (?)", author.getName());
         author.setId(this.findAll().stream().map(Author::getId).max(Comparator.naturalOrder()).get());

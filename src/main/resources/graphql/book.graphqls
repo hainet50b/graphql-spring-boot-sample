@@ -1,7 +1,8 @@
 type Book {
   id: ID!
   title: String!
-  author: Author!
+  publisher: Publisher!
+  authors: [Author]!
 }
 
 extend type Query {
@@ -9,5 +10,6 @@ extend type Query {
 }
 
 extend type Mutation {
-  createBook(title: String!, authorId: Int!) : Book!
+  createBook(title: String!, publisherId: Int!, authorId: Int!): Book!
+  relateAuthorToBook(bookId: Int!, authorId: Int!): Boolean!
 }
