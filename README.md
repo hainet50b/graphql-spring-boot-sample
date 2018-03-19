@@ -1,7 +1,12 @@
 # Sample requests
 ```
 query {
-  findBooks {
+  findBooks(filter: {
+    ids: [1]
+    titles: ["GraphQL"]
+    publisherIds: [1]
+    authorIds: [1]
+  }) {
     id,
     title,
     publisher{

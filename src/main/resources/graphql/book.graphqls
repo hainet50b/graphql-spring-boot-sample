@@ -5,8 +5,15 @@ type Book {
   authors: [Author]!
 }
 
+input BookFilter {
+  ids: [ID]
+  titles: [String]
+  publisherIds: [Int]
+  authorIds: [Int]
+}
+
 extend type Query {
-  findBooks: [Book]!
+  findBooks(filter: BookFilter): [Book]!
 }
 
 extend type Mutation {
