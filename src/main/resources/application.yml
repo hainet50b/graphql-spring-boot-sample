@@ -11,12 +11,16 @@ graphql:
     # (Optional) default: true
     corsEnabled: true
     # (Optional) default: /graphql
+    # Context path complete this.
     mapping: /graphql
 
 graphiql:
   # (Optional) default: true
   enabled: true
   # (Optional) default: /graphql
+  # Context path DON'T complete this.
+  # e.g. ${server.context-path}${graphql.servlet.mapping}
   endpoint: /graphql
   # (Optional) default: /graphiql
+  # Context path complete this.
   mapping: /graphiql
