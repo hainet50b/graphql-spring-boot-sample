@@ -1,0 +1,22 @@
+type CreditCard {
+    id: ID!
+    number: String!
+    goodThru: String!
+    brand: Brand!
+    securityCode: String!
+}
+
+type Query {
+    findCreditCards: [CreditCard]!
+}
+
+type Mutation {
+    createCreditCard(form: CreditCardForm!): CreditCard!
+}
+
+input CreditCardForm {
+    number: String!
+    goodThru: String!
+    brandId: Int!
+    securityCode: String!
+}
