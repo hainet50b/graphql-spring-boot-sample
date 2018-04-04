@@ -1,26 +1,15 @@
-CREATE TABLE book (
-  id           INT AUTO_INCREMENT,
-  title        VARCHAR NOT NULL UNIQUE,
-  publisher_id INT     NOT NULL,
-  author_id    INT     NOT NULL,
-  PRIMARY KEY (id)
-);
-
-CREATE TABLE publisher (
+CREATE TABLE brand (
   id   INT AUTO_INCREMENT,
-  name VARCHAR NOT NULL UNIQUE,
+  name VARCHAR(10) NOT NULL UNIQUE,
   PRIMARY KEY (id)
 );
 
-CREATE TABLE author (
-  id   INT AUTO_INCREMENT,
-  name VARCHAR NOT NULL UNIQUE,
-  PRIMARY KEY (id)
-);
-
-CREATE TABLE book_author (
-  id        INT AUTO_INCREMENT,
-  book_id   INT NOT NULL,
-  author_id INT NOT NULL,
-  PRIMARY KEY (id)
+CREATE TABLE credit_card (
+  id            INT AUTO_INCREMENT,
+  number        VARCHAR(16) NOT NULL UNIQUE,
+  good_thru     DATE        NOT NULL,
+  brand_id      INT         NOT NULL,
+  security_code VARCHAR(4)  NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (brand_id) REFERENCES brand (id)
 );

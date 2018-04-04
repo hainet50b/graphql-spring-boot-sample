@@ -1,7 +1,4 @@
-INSERT INTO book (title, publisher_id, author_id) VALUES ('GraphQL', 1, 1);
+INSERT INTO brand (name) VALUES ('VISA');
 
-INSERT INTO publisher (name) VALUES ('GitHub');
-
-INSERT INTO author (name) VALUES ('hainet');
-
-INSERT INTO book_author (book_id, author_id) VALUES (1, 1);
+INSERT INTO credit_card (number, good_thru, brand_id, security_code)
+VALUES ('1234567890123456', CURRENT_DATE, 1, '1234');
