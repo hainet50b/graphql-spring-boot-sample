@@ -1,69 +1,53 @@
-# Sample requests
+# GraphQL Spring Boot Sample
+## How to GraphiQL
+1. Launch this APP.
+1. Access to http://localhost:8080/graphiql.
+1. Enter queries below and hit Ctrl+Return.
 ```
+# Queries
 query {
-  findBooks(filter: {
-    ids: [1]
-    titles: ["GraphQL"]
-    publisherIds: [1]
-    authorIds: [1]
-  }) {
+  findCreditCards {
     id,
-    title,
-    publisher{
+    number,
+    goodThru,
+    brand {
+      id,
+      name
+    }
+  },
+  findBrands {
+    id,
+    name
+  }
+}
+
+mutation CreditCard($form: CreditCardForm!) {
+  createCreditCard(form: $form) {
+    id,
+    number,
+    goodThru,
+    brand {
       id,
       name
     },
-    authors {
-      id,
-      name
-    }
+    securityCode
   }
 }
 
 mutation {
-  createBook(title: "Buch der Lieder", publisherId: 2, authorId: 2) {
-    id,
-    title,
-    publisher {
-      id,
-      name
-    }
-    authors {
-      id,
-      name
-    }
-  }
-}
-
-mutation {
-  relateAuthorToBook(bookId: 2, authorId: 2)
-}
-
-query {
-  findPublishers {
+  createBrand(name: "MASTER") {
     id,
     name
   }
 }
 
-mutation {
-  createPublisher(name: "Iwanami") {
-    id,
-    name
-  }
-}
-
-query {
-  findAuthors {
-    id,
-    name
-  }
-}
-
-mutation {
-  createAuthor(name: "Heinrich Heine") {
-    id,
-    name
+# Variables
+{
+  "form": {
+    "number": "2234567890123456",
+    "goodThru": "2018-04-18",
+    "brandId": 1,
+    "securityCode": "1234"
   }
 }
 ```
