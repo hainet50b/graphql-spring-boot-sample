@@ -2,50 +2,48 @@ package com.hainet.graphql.spring.boot.sample.domain.dao;
 
 import com.hainet.graphql.spring.boot.sample.domain.entity.Brand;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-@Slf4j
 public class BrandDao {
 
     private final JdbcTemplate jdbcTemplate;
 
     public List<Brand> findAll() {
-        final String query = "SELECT * FROM brand";
-
-        log.info(query);
         return this.jdbcTemplate.query(
-                query,
+                "SELECT * FROM brand",
                 new BeanPropertyRowMapper<>(Brand.class)
         );
     }
 
     public Brand findById(final int id) {
-        final String query = "SELECT * FROM brand WHERE id = ?";
-
-        log.info(query);
         return this.jdbcTemplate.queryForObject(
-                query,
+                "SELECT * FROM brand WHERE id = ?",
                 new BeanPropertyRowMapper<>(Brand.class),
                 id
         );
     }
 
     public int insert(final Brand brand) {
-        final String query = "INSERT INTO brand (name) VALUES (?)";
+        final GeneratedKeyHolder holder = new GeneratedKeyHolder();
+        final int result = this.jdbcTemplate.update(con -> {
+            final PreparedStatement ps = con.prepareStatement(
+                    "INSERT INTO brand (name) VALUES (?)",
+                    Statement.RETURN_GENERATED_KEYS
+            );
+            ps.setString(1, brand.getName());
 
-        log.info(query);
-        final int result = this.jdbcTemplate.update(query, brand.getName());
-        brand.setId(this.jdbcTemplate.queryForObject(
-                "SELECT MAX(id) FROM brand",
-                Integer.class
-        ));
+            return ps;
+        }, holder);
+        brand.setId(holder.getKey().intValue());
 
         return result;
     }

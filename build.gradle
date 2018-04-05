@@ -27,8 +27,10 @@ repositories {
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-jdbc')
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-aop')
 
     runtime('com.h2database:h2')
+    compile("org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16")
 
     compile('com.graphql-java:graphql-spring-boot-starter:4.0.0')
     compile('com.graphql-java:graphql-java-tools:4.3.0')

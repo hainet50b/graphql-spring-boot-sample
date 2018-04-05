@@ -2,7 +2,6 @@ package com.hainet.graphql.spring.boot.sample.domain.dao;
 
 import com.hainet.graphql.spring.boot.sample.domain.entity.CreditCard;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -11,27 +10,20 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-@Slf4j
 public class CreditCardDao {
 
     private final JdbcTemplate jdbcTemplate;
 
     public List<CreditCard> findAll() {
-        final String query = "SELECT * FROM credit_card";
-
-        log.info(query);
         return this.jdbcTemplate.query(
-                query,
+                "SELECT * FROM credit_card",
                 new BeanPropertyRowMapper<>(CreditCard.class)
         );
     }
 
     public int insert(final CreditCard creditCard) {
-        final String query = "INSERT INTO credit_card (number, good_thru, brand_id, security_code) VALUES (?, ?, ?, ?)";
-
-        log.info(query);
         final int result = this.jdbcTemplate.update(
-                query,
+                "INSERT INTO credit_card (number, good_thru, brand_id, security_code) VALUES (?, ?, ?, ?)",
                 creditCard.getNumber(),
                 creditCard.getGoodThru(),
                 creditCard.getBrandId(),

@@ -1,4 +1,9 @@
 spring:
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:h2:mem:/graphql-spring-boot-sample
+    username: sa
+    password:
   h2:
     console:
       enabled: true
