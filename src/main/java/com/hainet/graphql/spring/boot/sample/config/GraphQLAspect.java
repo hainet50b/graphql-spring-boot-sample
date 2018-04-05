@@ -22,6 +22,6 @@ public class GraphQLAspect {
 
     @Before("query() || mutation()")
     public void logGraphQLExecution(final JoinPoint jp) {
-        log.info("[ SQL Queries executed in '" + jp.getSignature().toShortString() + "' ]");
+        log.info("[ SQL executed in '" + jp.getSignature().toShortString() + "' ]");
     }
 }
