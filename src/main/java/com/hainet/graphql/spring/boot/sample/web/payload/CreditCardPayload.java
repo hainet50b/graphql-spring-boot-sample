@@ -1,11 +1,11 @@
-package com.hainet.graphql.spring.boot.sample.web.form;
+package com.hainet.graphql.spring.boot.sample.web.payload;
 
 import lombok.Data;
 
 import java.time.LocalDate;
 
 @Data
-public class CreditCardForm {
+public class CreditCardPayload {
 
     private String number;
 

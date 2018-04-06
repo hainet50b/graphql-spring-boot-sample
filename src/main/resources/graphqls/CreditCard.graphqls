@@ -14,7 +14,7 @@ type Mutation {
     createCreditCard(form: CreditCardForm!): CreditCard!
 }
 
-input CreditCardForm {
+input CreditCardPayLoad {
     number: String!
     goodThru: String!
     brandId: Int!
