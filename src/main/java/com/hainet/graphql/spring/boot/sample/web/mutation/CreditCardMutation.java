@@ -24,4 +24,8 @@ public class CreditCardMutation implements GraphQLMutationResolver {
 
         return creditCard;
     }
+
+    public CreditCard createValidatedCreditCard(final CreditCardPayload payload) {
+        return this.createCreditCard(payload);
+    }
 }

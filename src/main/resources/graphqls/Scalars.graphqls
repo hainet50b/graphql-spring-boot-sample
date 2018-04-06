@@ -1,1 +1,4 @@
-scalar LocalDate
+# ValidatedCreditCardPayload
+scalar Number
+scalar GoodThru
+scalar SecurityCode
