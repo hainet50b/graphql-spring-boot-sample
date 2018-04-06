@@ -17,5 +17,4 @@ public class BrandQuery implements GraphQLQueryResolver {
     public List<Brand> findBrands() {
         return dao.findAll();
     }
-
 }
