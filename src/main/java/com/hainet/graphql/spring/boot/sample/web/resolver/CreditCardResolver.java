@@ -13,7 +13,7 @@ public class CreditCardResolver implements GraphQLResolver<CreditCard> {
 
     private final BrandDao brandDao;
 
-    public Brand getBrand(final CreditCard creditCard) {
+    public Brand brand(final CreditCard creditCard) {
         return this.brandDao.findById(creditCard.getBrandId());
     }
 }
