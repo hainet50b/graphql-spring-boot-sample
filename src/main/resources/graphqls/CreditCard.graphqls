@@ -1,4 +1,4 @@
-type CreditCard {
+type CreditCard implements Entity {
     id: ID!
     number: String!
     goodThru: String!

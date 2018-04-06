@@ -1,4 +1,4 @@
-type Brand {
+type Brand implements Entity {
     id: ID!
     name: String!
 }
