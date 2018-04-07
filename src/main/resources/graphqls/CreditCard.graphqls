@@ -12,7 +12,6 @@ type Query {
 
 type Mutation {
     createCreditCard(payload: CreditCardPayload!): CreditCard!
-    createValidatedCreditCard(payload: ValidatedCreditCardPayload!): CreditCard!
 }
 
 input CreditCardPayload {
@@ -20,11 +19,4 @@ input CreditCardPayload {
     goodThru: String!
     brandId: Int!
     securityCode: String!
-}
-
-input ValidatedCreditCardPayload {
-    number: Number!
-    gootThru: GoodThru!
-    brandId: Int!
-    securityCode: SecurityCode!
 }

@@ -1,0 +1,22 @@
+type ValidatedCreditCard implements Entity {
+    id: ID!
+    number: Number!
+    goodThru: GoodThru!
+    brand: Brand!
+    securityCode: SecurityCode!
+}
+
+extend type Query {
+    findValidatedCreditCards: [ValidatedCreditCard]!
+}
+
+extend type Mutation {
+    createValidatedCreditCard(payload: ValidatedCreditCardPayload!): ValidatedCreditCard!
+}
+
+input ValidatedCreditCardPayload {
+    number: Number!
+    goodThru: GoodThru!
+    brandId: Int!
+    securityCode: SecurityCode!
+}
