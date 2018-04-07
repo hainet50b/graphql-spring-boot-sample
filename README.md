@@ -7,22 +7,38 @@
 # Queries
 query {
   findCreditCards {
+    id
+    number,
+    goodThru,
+    securityCode
+  },
+  findValidatedCreditCards {
+    id,
+    number,
+    goodThru,
+    securityCode
+  }
+  findBrands {
+    id
+    name
+  }
+}
+
+mutation CreditCard($payload: CreditCardPayload!) {
+  createCreditCard(payload: $payload) {
     id,
     number,
     goodThru,
     brand {
       id,
       name
-    }
-  },
-  findBrands {
-    id,
-    name
+    },
+    securityCode
   }
 }
 
-mutation CreditCard($form: CreditCardForm!) {
-  createCreditCard(form: $form) {
+mutation ValidatedCreditCard($validatedPayload: ValidatedCreditCardPayload!) {
+    createValidatedCreditCard(payload: $validatedPayload) {
     id,
     number,
     goodThru,
@@ -43,9 +59,15 @@ mutation {
 
 # Variables
 {
-  "form": {
+  "payload": {
     "number": "2234567890123456",
     "goodThru": "2018-04-18",
+    "brandId": 1,
+    "securityCode": "1234"
+  },
+  "validatedPayload": {
+    "number": "3234567890123456",
+    "goodThru": "2018-04",
     "brandId": 1,
     "securityCode": "1234"
   }
