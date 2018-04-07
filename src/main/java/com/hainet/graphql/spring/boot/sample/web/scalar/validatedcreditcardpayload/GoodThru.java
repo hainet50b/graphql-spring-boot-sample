@@ -8,13 +8,16 @@ import graphql.schema.GraphQLScalarType;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 
 @Component
 public class GoodThru extends GraphQLScalarType {
 
     public GoodThru() {
-        super("GoodThru", "ValidatedCreditCardPayload.SecurityCode", new Coercing() {
+        super("GoodThru", "ValidatedCreditCardPayload.GoodThru", new Coercing() {
+            private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
+
             @Override
             public String serialize(final Object dataFetcherResult) {
                 return this.serializeGoodThru(dataFetcherResult);
@@ -30,8 +33,6 @@ public class GoodThru extends GraphQLScalarType {
                 return this.parseGoodThruFromAstLiteral(input);
             }
 
-            private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
-
             private String serializeGoodThru(final Object dataFetcherResult) {
                 if (dataFetcherResult instanceof LocalDate) {
                     return ((LocalDate) dataFetcherResult).format(formatter);
@@ -41,9 +42,9 @@ public class GoodThru extends GraphQLScalarType {
 
             private LocalDate parseGoodThru(final String goodThru) {
                 try {
-                    return LocalDate.parse(goodThru, formatter);
+                    return YearMonth.parse(goodThru).atDay(1);
                 } catch (Exception e) {
-                    throw new CoercingParseValueException("Unable to parse value!");
+                    throw new CoercingParseValueException("Unable to parse value!", e);
                 }
             }
 
