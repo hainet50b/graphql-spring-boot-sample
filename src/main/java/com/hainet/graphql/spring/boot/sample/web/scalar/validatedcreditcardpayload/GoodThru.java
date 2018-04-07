@@ -17,49 +17,49 @@ public class GoodThru extends GraphQLScalarType {
         super("GoodThru", "ValidatedCreditCardPayload.SecurityCode", new Coercing() {
             @Override
             public String serialize(final Object dataFetcherResult) {
-                return GoodThru.serializeGoodThru(dataFetcherResult);
+                return this.serializeGoodThru(dataFetcherResult);
             }
 
             @Override
             public LocalDate parseValue(final Object input) {
-                return GoodThru.parseGoodThruFromVariable(input);
+                return this.parseGoodThruFromVariable(input);
             }
 
             @Override
             public LocalDate parseLiteral(final Object input) {
-                return GoodThru.parseGoodThruFromAstLiteral(input);
+                return this.parseGoodThruFromAstLiteral(input);
+            }
+
+            private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
+
+            private String serializeGoodThru(final Object dataFetcherResult) {
+                if (dataFetcherResult instanceof LocalDate) {
+                    return ((LocalDate) dataFetcherResult).format(formatter);
+                }
+                throw new CoercingSerializeException("Unable to serialize!");
+            }
+
+            private LocalDate parseGoodThru(final String goodThru) {
+                try {
+                    return LocalDate.parse(goodThru, formatter);
+                } catch (Exception e) {
+                    throw new CoercingParseValueException("Unable to parse value!");
+                }
+            }
+
+            private LocalDate parseGoodThruFromVariable(final Object input) {
+                if (input instanceof String) {
+                    return this.parseGoodThru(input.toString());
+                }
+                throw new CoercingParseValueException("Unable to parse value!");
+            }
+
+            private LocalDate parseGoodThruFromAstLiteral(final Object input) {
+                if (input instanceof StringValue) {
+                    return this.parseGoodThru(((StringValue) input).getValue());
+                }
+                throw new CoercingParseValueException("Unable to parse value!");
             }
         });
-    }
-
-    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
-
-    private static String serializeGoodThru(final Object dataFetcherResult) {
-        if (dataFetcherResult instanceof LocalDate) {
-            return ((LocalDate) dataFetcherResult).format(formatter);
-        }
-        throw new CoercingSerializeException("Unable to serialize!");
-    }
-
-    private static LocalDate parseGoodThru(final String goodThru) {
-        try {
-            return LocalDate.parse(goodThru, formatter);
-        } catch (Exception e) {
-            throw new CoercingParseValueException("Unable to parse value!");
-        }
-    }
-
-    private static LocalDate parseGoodThruFromVariable(final Object input) {
-        if (input instanceof String) {
-            return parseGoodThru(input.toString());
-        }
-        throw new CoercingParseValueException("Unable to parse value!");
-    }
-
-    private static LocalDate parseGoodThruFromAstLiteral(final Object input) {
-        if (input instanceof StringValue) {
-            return parseGoodThru(((StringValue) input).getValue());
-        }
-        throw new CoercingParseValueException("Unable to parse value!");
     }
 }
