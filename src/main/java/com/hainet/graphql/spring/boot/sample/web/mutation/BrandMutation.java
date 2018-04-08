@@ -16,7 +16,7 @@ public class BrandMutation implements GraphQLMutationResolver {
         final Brand brand = new Brand();
         brand.setName(name);
 
-        dao.insert(brand);
+        this.dao.insert(brand);
 
         return brand;
     }

@@ -15,6 +15,6 @@ public class ValidatedCreditCardQuery implements GraphQLQueryResolver {
     private final ValidatedCreditCardDao dao;
 
     public List<ValidatedCreditCard> findValidatedCreditCards() {
-        return dao.findAll();
+        return this.dao.findAll();
     }
 }

@@ -20,7 +20,7 @@ public class CreditCardMutation implements GraphQLMutationResolver {
         creditCard.setBrandId(payload.getBrandId());
         creditCard.setSecurityCode(payload.getSecurityCode());
 
-        dao.insert(creditCard);
+        this.dao.insert(creditCard);
 
         return creditCard;
     }
