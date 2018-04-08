@@ -7,7 +7,7 @@
 # Queries
 query {
   findCreditCards {
-    id
+    id,
     number,
     goodThru,
     securityCode
