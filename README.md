@@ -24,6 +24,11 @@ query {
   }
 }
 
+query {
+  rabbit,
+  turtle
+}
+
 mutation CreditCard($payload: CreditCardPayload!) {
   createCreditCard(payload: $payload) {
     id,
