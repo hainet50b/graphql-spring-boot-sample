@@ -1,0 +1,4 @@
+extend type Query {
+    rabbit: String!
+    turtle: String!
+}
