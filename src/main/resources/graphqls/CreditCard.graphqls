@@ -8,6 +8,7 @@ type CreditCard implements Entity {
 
 type Query {
     findCreditCards: [CreditCard]!
+    findCreditCardById(id: Int!): CreditCard!
 }
 
 type Mutation {

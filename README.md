@@ -12,6 +12,12 @@ query {
     goodThru,
     securityCode
   },
+  findCreditCardById(id: 1) {
+    id,
+    number,
+    goodThru,
+    securityCode
+  }
   findValidatedCreditCards {
     id,
     number,

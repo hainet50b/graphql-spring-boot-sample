@@ -2,6 +2,7 @@ package com.hainet.graphql.spring.boot.sample.domain.dao;
 
 import com.hainet.graphql.spring.boot.sample.domain.entity.CreditCard;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -22,6 +23,18 @@ public class CreditCardDao {
                 "SELECT * FROM credit_card",
                 new BeanPropertyRowMapper<>(CreditCard.class)
         );
+    }
+
+    public CreditCard findById(final int id) {
+        try {
+            return this.jdbcTemplate.queryForObject(
+                    "SELECT * FROM credit_card WHERE id = ?",
+                    new BeanPropertyRowMapper<>(CreditCard.class),
+                    id
+            );
+        } catch (final DataAccessException e) {
+            return null;
+        }
     }
 
     public int insert(final CreditCard creditCard) {
