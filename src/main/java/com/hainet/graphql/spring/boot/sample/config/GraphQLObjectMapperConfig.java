@@ -6,7 +6,7 @@ import graphql.servlet.ObjectMapperConfigurer;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ObjectMapperConfig implements ObjectMapperConfigurer {
+public class GraphQLObjectMapperConfig implements ObjectMapperConfigurer {
 
     @Override
     public void configure(final ObjectMapper mapper) {
