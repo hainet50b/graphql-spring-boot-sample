@@ -25,7 +25,7 @@ public class CreditCardQuery implements GraphQLQueryResolver {
         final CreditCard creditCard = this.dao.findById(id);
         if (creditCard == null) {
             final Map<String, Object> extensions = new HashMap<>();
-            extensions.put("Target", id);
+            extensions.put("CREDIT_CARD_ID", id);
 
             throw new GraphQLValidationError("The credit card was not found!", extensions);
         }
