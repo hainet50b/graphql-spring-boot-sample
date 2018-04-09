@@ -1,6 +1,6 @@
 package com.hainet.graphql.spring.boot.sample.config;
 
-import com.hainet.graphql.spring.boot.sample.web.exception.GraphQLErrorAdapter;
+import com.hainet.graphql.spring.boot.sample.web.exception.GraphQLErrorHolder;
 import graphql.ExceptionWhileDataFetching;
 import graphql.GraphQLError;
 import graphql.servlet.GraphQLErrorHandler;
@@ -27,14 +27,14 @@ public class GraphQLErrorHandlerConfig implements GraphQLErrorHandler {
                     }
                 });
 
-        final List<GraphQLErrorAdapter> serverErrors = incomingErrors.stream()
+        final List<GraphQLErrorHolder> serverErrors = incomingErrors.stream()
                 .filter(this::isServerError)
-                .map(GraphQLErrorAdapter::new)
+                .map(GraphQLErrorHolder::new)
                 .collect(Collectors.toList());
 
-        final List<GraphQLErrorAdapter> clientErrors = incomingErrors.stream()
+        final List<GraphQLErrorHolder> clientErrors = incomingErrors.stream()
                 .filter(this::isClientError)
-                .map(GraphQLErrorAdapter::new)
+                .map(GraphQLErrorHolder::new)
                 .collect(Collectors.toList());
 
         final ArrayList<GraphQLError> outgoingErrors = new ArrayList<>();

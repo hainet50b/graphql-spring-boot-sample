@@ -8,11 +8,11 @@ import graphql.language.SourceLocation;
 import java.util.List;
 import java.util.Map;
 
-public class GraphQLErrorAdapter implements GraphQLError {
+public class GraphQLErrorHolder implements GraphQLError {
 
     private GraphQLError error;
 
-    public GraphQLErrorAdapter(final GraphQLError error) {
+    public GraphQLErrorHolder(final GraphQLError error) {
         this.error = error;
     }
 
