@@ -18,9 +18,9 @@ public class GraphQLErrorHolder implements GraphQLError {
 
     @Override
     public String getMessage() {
-        return error instanceof ExceptionWhileDataFetching ?
-                ((ExceptionWhileDataFetching) error).getException().getMessage() :
-                error.getMessage();
+        return this.error instanceof ExceptionWhileDataFetching ?
+                ((ExceptionWhileDataFetching) this.error).getException().getMessage() :
+                this.error.getMessage();
     }
 
     @Override
