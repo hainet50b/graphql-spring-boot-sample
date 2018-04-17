@@ -1,4 +1,8 @@
 # GraphQL Spring Boot Sample
+2018年4/18日に行われる「JSUG勉強会 2018年その3 LT大会」で発表してきます。  
+イベント詳細：https://jsug.doorkeeper.jp/events/72113  
+スライド：後日アップロード
+
 ## How to GraphiQL
 1. Launch this APP.
 1. Access to http://localhost:8080/graphiql.
