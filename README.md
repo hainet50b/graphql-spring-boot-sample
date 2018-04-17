@@ -1,5 +1,5 @@
 # GraphQL Spring Boot Sample
-2018年4/18日に行われる「JSUG勉強会 2018年その3 LT大会」で発表してきます。  
+2018年4月18日に行われる「JSUG勉強会 2018年その3 LT大会」で発表してきます。  
 イベント詳細：https://jsug.doorkeeper.jp/events/72113  
 スライド：後日アップロード
 
