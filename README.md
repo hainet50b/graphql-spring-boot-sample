@@ -4,6 +4,7 @@
 スライド：https://speakerdeck.com/hainet/graphqlgage-hao-liang-sasoudatutafalsede-springderu-men-sitarazhi-itahua
 
 ## How to GraphiQL
+1. Clone this APP.
 1. Launch this APP.
 1. Access to http://localhost:8080/graphiql.
 1. Enter queries below and hit Ctrl+Return.
